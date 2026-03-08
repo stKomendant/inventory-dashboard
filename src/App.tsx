@@ -1,11 +1,18 @@
 import Layout from "./component/Layout/Layout";
-import Sidebar from "./component/Layout/Sidebar";
+import { Routes, Route } from "react-router-dom";
+
+import Dashboard from "./pages/Dashboard/DashboardPage";
+import Orders from "./pages/Orders/OrdersPage";
+import Products from "./pages/Products/ProductsPage";
 
 const App = () => {
   return (
     <Layout>
-      <Sidebar />
-      <div className="flex-1 p8">Dashboard</div>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/orders" element={<Orders />} />
+      </Routes>
     </Layout>
   );
 };

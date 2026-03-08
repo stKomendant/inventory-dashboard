@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Sidebar from "../Sidebar/Sidebar";
 
 type LayoutProps = {
   children: ReactNode;
@@ -6,7 +7,17 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="flex h-screen bg-slate-900 text-white">{children}</div>
+    <div className="flex h-screen bg-slate-900 text-white">
+      <Sidebar />
+
+      <div className="flex-1 flex flex-col overflow-auto">
+        <header className="h-16 border-b border-slate-700 flex items-center px-6">
+          Dashboard
+        </header>
+
+        <main className="flex-1 p-8">{children}</main>
+      </div>
+    </div>
   );
 };
 
