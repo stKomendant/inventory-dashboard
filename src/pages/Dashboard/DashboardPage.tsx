@@ -1,6 +1,6 @@
 import StatCard from "../../component/StatCard/StatCard";
-import SalesChart from "../../component/Chart/SalesChart";
-import ProductsTable from "../../component/Table/ProductsTable";
+import SalesChart from "../../component/chart/SalesChart";
+import ProductsTable from "../../component/table/ProductsTable";
 
 export default function DashboardPage() {
   return (
