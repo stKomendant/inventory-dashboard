@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useProducts } from "../../hooks/useProducts";
 
 type Product = {
   id: number;
@@ -8,10 +9,7 @@ type Product = {
 };
 
 const ProductsPage = () => {
-  const [products, setProducts] = useState<Product[]>(() => {
-    const saved = localStorage.getItem("products");
-    return saved ? JSON.parse(saved) : [];
-  });
+  const { products, setProducts } = useProducts();
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -48,10 +46,6 @@ const ProductsPage = () => {
     setPrice("");
     setStock("");
   };
-
-  useEffect(() => {
-    localStorage.setItem("products", JSON.stringify(products));
-  }, [products]);
 
   const updateProduct = () => {
     setProducts(
