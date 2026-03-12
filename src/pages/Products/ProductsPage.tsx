@@ -21,6 +21,8 @@ const ProductsPage = () => {
 
   const [editingId, setEditingId] = useState<number | null>(null);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const deletProduct = (id: number) => {
     const confirmDelete = confirm(
       "Are you sure you want to delete this product?",
@@ -161,6 +163,7 @@ const ProductsPage = () => {
                       setName(product.name);
                       setPrice(String(product.price));
                       setStock(String(product.stock));
+                      setIsModalOpen(true);
                     }}
                     className="text-blue-400"
                   >
@@ -179,6 +182,42 @@ const ProductsPage = () => {
             ))}
         </tbody>
       </table>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50">
+          <div className="bg-slate-900 p-6 rounded w-80">
+            <h2 className="text-xl mb-4">Edit Product</h2>
+
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="bg-slate-800 p-2 mb-2 w-full"
+            />
+
+            <input
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              className="bg-slate-800 p-2 mb-2 w-full"
+            />
+
+            <input
+              value={stock}
+              onChange={(e) => setStock(e.target.value)}
+              className="bg-slate-800 p-2 mb-4 w-full"
+            />
+
+            <button
+              onClick={() => {
+                updateProduct();
+                setIsModalOpen(false);
+              }}
+              className="bg-indigo-600 px-4 py-2 rounded"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
