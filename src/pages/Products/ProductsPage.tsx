@@ -21,6 +21,8 @@ const ProductsPage = () => {
 
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
+  const [editingId, setEditingId] = useState<number | null>(null);
+
   const deletProduct = (id: number) => {
     const confirmDelete = confirm(
       "Are you sure you want to delete this product?",
@@ -51,6 +53,26 @@ const ProductsPage = () => {
     localStorage.setItem("products", JSON.stringify(products));
   }, [products]);
 
+  const updateProduct = () => {
+    setProducts(
+      products.map((product) =>
+        product.id === editingId
+          ? {
+              ...product,
+              name,
+              price: Number(price),
+              stock: Number(stock) || 0,
+            }
+          : product,
+      ),
+    );
+
+    setEditingId(null);
+    setName("");
+    setPrice("");
+    setStock("");
+  };
+
   return (
     <div className="text-2xl font-bold mb-6">
       <h1>Products</h1>
@@ -79,10 +101,10 @@ const ProductsPage = () => {
 
         <button
           disabled={!name || !price || !stock}
-          onClick={addProduct}
+          onClick={editingId ? updateProduct : addProduct}
           className="bg-indigo-600 px-4 rounded disabled:opacity-50"
         >
-          Add
+          {editingId ? "Update" : "Add"}
         </button>
       </div>
 
@@ -138,6 +160,19 @@ const ProductsPage = () => {
                   )}
                 </td>
 
+                <td>
+                  <button
+                    onClick={() => {
+                      setEditingId(product.id);
+                      setName(product.name);
+                      setPrice(String(product.price));
+                      setStock(String(product.stock));
+                    }}
+                    className="text-blue-400"
+                  >
+                    Edit
+                  </button>
+                </td>
                 <td>
                   <button
                     onClick={() => deletProduct(product.id)}
