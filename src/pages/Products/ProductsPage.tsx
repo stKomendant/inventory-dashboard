@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Product = {
   id: number;
@@ -8,11 +8,10 @@ type Product = {
 };
 
 const ProductsPage = () => {
-  const [products, setProducts] = useState<Product[]>([
-    { id: 1, name: "MacBook", price: 2400, stock: 12 },
-    { id: 2, name: "iPhone", price: 999, stock: 30 },
-    { id: 3, name: "AirPods", price: 199, stock: 45 },
-  ]);
+  const [products, setProducts] = useState<Product[]>(() => {
+    const saved = localStorage.getItem("products");
+    return saved ? JSON.parse(saved) : [];
+  });
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -47,6 +46,10 @@ const ProductsPage = () => {
     setPrice("");
     setStock("");
   };
+
+  useEffect(() => {
+    localStorage.setItem("products", JSON.stringify(products));
+  }, [products]);
 
   return (
     <div className="text-2xl font-bold mb-6">
