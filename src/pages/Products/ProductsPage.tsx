@@ -1,15 +1,9 @@
 import { useState } from "react";
 import { useProducts } from "../../hooks/useProducts";
-
-type Product = {
-  id: number;
-  name: string;
-  price: number;
-  stock: number;
-};
+import type { Product } from "../../types/Product";
 
 const ProductsPage = () => {
-  const { products, setProducts } = useProducts();
+  const { products, setProducts, loading, error } = useProducts();
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -68,6 +62,14 @@ const ProductsPage = () => {
     setPrice("");
     setStock("");
   };
+
+  if (loading) {
+    return <p className="text-slate-400">Loading products...</p>;
+  }
+
+  if (error) {
+    return <p className="text-red-400">{error}</p>;
+  }
 
   return (
     <div className="text-2xl font-bold mb-6">
