@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useProducts } from "../../hooks/useProducts";
 import type { Product } from "../../types/Product";
+import ProductTableSkeleton from "../../Skeleton/ProductTableSkeleton";
 
 const ProductsPage = () => {
   const { products, setProducts, loading, error } = useProducts();
@@ -16,13 +17,9 @@ const ProductsPage = () => {
   const [editingId, setEditingId] = useState<number | null>(null);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState<number | null>(null);
 
   const deletProduct = (id: number) => {
-    const confirmDelete = confirm(
-      "Are you sure you want to delete this product?",
-    );
-
-    if (!confirmDelete) return;
     setProducts(products.filter((product) => product.id !== id));
   };
 
@@ -64,7 +61,7 @@ const ProductsPage = () => {
   };
 
   if (loading) {
-    return <p className="text-slate-400">Loading products...</p>;
+    return <ProductTableSkeleton />;
   }
 
   if (error) {
@@ -174,8 +171,8 @@ const ProductsPage = () => {
                 </td>
                 <td>
                   <button
-                    onClick={() => deletProduct(product.id)}
-                    className="text-red-400 hover:text-red-300"
+                    onClick={() => setDeleteId(product.id)}
+                    className="text-red-400"
                   >
                     Delete
                   </button>
@@ -217,6 +214,35 @@ const ProductsPage = () => {
             >
               Update
             </button>
+          </div>
+        </div>
+      )}
+
+      {deleteId !== null && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50">
+          <div className="bg-slate-900 p-6 rounded w-80 text-center">
+            <p className="text-lg mb-4">
+              Are you sure you want to delete this product?
+            </p>
+
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => setDeleteId(null)}
+                className="bg-slate-700 px-4 py-2 rounded"
+              >
+                Cancel
+              </button>
+
+              <button
+                onClick={() => {
+                  deletProduct(deleteId);
+                  setDeleteId(null);
+                }}
+                className="bg-red-600 px-4 py-2 rounded"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </div>
       )}

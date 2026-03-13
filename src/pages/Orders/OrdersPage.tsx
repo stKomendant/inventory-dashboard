@@ -11,7 +11,12 @@ const OrdersPage = () => {
   const [orders] = useState<Order[]>([
     { id: 123, customer: "John Doe", total: 620, status: "paid" },
     { id: 124, customer: "Alice", total: 140, status: "pending" },
-    { id: 125, customer: "Mike", total: 310, status: "cancelled" },
+    { id: 125, customer: "Mark", total: 30, status: "cancelled" },
+    { id: 126, customer: "Nika", total: 189, status: "paid" },
+    { id: 127, customer: "Masha", total: 13, status: "cancelled" },
+    { id: 128, customer: "Nikita", total: 432, status: "paid" },
+    { id: 129, customer: "Katya", total: 873, status: "pending" },
+    { id: 130, customer: "Maks", total: 692, status: "cancelled" },
   ]);
 
   const [statusFilter, setStatusFilter] = useState<
