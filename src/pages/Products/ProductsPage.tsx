@@ -142,9 +142,9 @@ const ProductsPage = () => {
               sortOrder === "asc" ? a.price - b.price : b.price - a.price,
             )
             .map((product) => (
-              <tr key={product.id} className="border-b border-slate-700">
+              <tr key={product.id} className=" border-b border-slate-700">
                 <td className="py-3">{product.name}</td>
-                <td>${product.price}</td>
+                <td>£{product.price}</td>
                 <td>
                   {product.stock > 20 ? (
                     <span className="text-green-400">In Stock</span>
@@ -164,7 +164,7 @@ const ProductsPage = () => {
                       setStock(String(product.stock));
                       setIsModalOpen(true);
                     }}
-                    className="text-blue-400"
+                    className="text-blue-400 hover:text-blue-300 transition"
                   >
                     Edit
                   </button>

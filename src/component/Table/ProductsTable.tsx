@@ -1,8 +1,8 @@
 const products = [
-  { id: 1, name: "MacBook Pro", price: "$2400", stock: 12 },
-  { id: 2, name: "iPhone 15", price: "$999", stock: 30 },
-  { id: 3, name: "AirPods", price: "$199", stock: 45 },
-  { id: 4, name: "Magic Keyboard", price: "$120", stock: 8 },
+  { id: 1, name: "MacBook Pro", price: "£2612", stock: 12 },
+  { id: 2, name: "iPhone 18", price: "£1042", stock: 30 },
+  { id: 3, name: "AirPods", price: "£216", stock: 45 },
+  { id: 4, name: "Webcam", price: "£120", stock: 8 },
 ];
 const ProductsTable = () => {
   return (

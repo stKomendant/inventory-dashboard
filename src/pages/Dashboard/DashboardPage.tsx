@@ -6,10 +6,10 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 gap-6">
-        <StatCard title="Products" value="128" />
-        <StatCard title="Orders" value="32" />
-        <StatCard title="Revenue" value="$12,430" />
-        <StatCard title="Users" value="542" />
+        <StatCard title="Products" value="64" />
+        <StatCard title="Orders" value="103" />
+        <StatCard title="Revenue" value="£11,823" />
+        <StatCard title="Users" value="271" />
       </div>
 
       <SalesChart />

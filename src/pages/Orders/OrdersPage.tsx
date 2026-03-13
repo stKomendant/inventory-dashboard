@@ -9,14 +9,14 @@ type Order = {
 
 const OrdersPage = () => {
   const [orders] = useState<Order[]>([
-    { id: 123, customer: "John Doe", total: 620, status: "paid" },
-    { id: 124, customer: "Alice", total: 140, status: "pending" },
-    { id: 125, customer: "Mark", total: 30, status: "cancelled" },
-    { id: 126, customer: "Nika", total: 189, status: "paid" },
-    { id: 127, customer: "Masha", total: 13, status: "cancelled" },
-    { id: 128, customer: "Nikita", total: 432, status: "paid" },
-    { id: 129, customer: "Katya", total: 873, status: "pending" },
-    { id: 130, customer: "Maks", total: 692, status: "cancelled" },
+    { id: 76, customer: "John Doe", total: 620, status: "paid" },
+    { id: 77, customer: "Alice", total: 140, status: "pending" },
+    { id: 78, customer: "Mark", total: 30, status: "cancelled" },
+    { id: 79, customer: "Nika", total: 189, status: "paid" },
+    { id: 80, customer: "Masha", total: 13, status: "cancelled" },
+    { id: 81, customer: "Nikita", total: 432, status: "paid" },
+    { id: 82, customer: "Katya", total: 873, status: "pending" },
+    { id: 83, customer: "Maks", total: 692, status: "cancelled" },
   ]);
 
   const [statusFilter, setStatusFilter] = useState<
@@ -65,7 +65,7 @@ const OrdersPage = () => {
               <tr key={order.id} className="border-b border-slate-700">
                 <td className="py-3">#{order.id}</td>
                 <td>{order.customer}</td>
-                <td>${order.total}</td>
+                <td>£{order.total}</td>
 
                 <td>
                   {order.status === "paid" ? (
